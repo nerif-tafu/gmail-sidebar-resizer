@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Gmail Resizable Sidebar",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Drag the edge of Gmail's left sidebar to resize it and read long label names.",
   "permissions": ["storage"],
   "host_permissions": ["https://mail.google.com/*"],
@@ -20,7 +20,10 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "gmail-resizable-sidebar@local.dev",
-      "strict_min_version": "109.0"
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   }
 }
