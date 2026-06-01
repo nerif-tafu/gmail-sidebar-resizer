@@ -6,6 +6,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,16 +23,26 @@ jobs:
           name=$(jq -r '.name' extension/manifest.json | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "slug=$name" >> "$GITHUB_OUTPUT"
+          echo "zip=${name}-v${version}.zip" >> "$GITHUB_OUTPUT"
 
       - name: Create ZIP (manifest at archive root)
         run: |
           cd extension
-          zip -r "../${{ steps.meta.outputs.slug }}-v${{ steps.meta.outputs.version }}.zip" . \
-            -x "*.DS_Store" -x "*~"
+          zip -r "../${{ steps.meta.outputs.zip }}" . -x "*.DS_Store" -x "*~"
 
-      - name: Upload artifact
+      - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.meta.outputs.slug }}-v${{ steps.meta.outputs.version }}
-          path: ${{ steps.meta.outputs.slug }}-v${{ steps.meta.outputs.version }}.zip
+          path: ${{ steps.meta.outputs.zip }}
           if-no-files-found: error
+
+      - name: Publish GitHub Release
+        if: github.event_name != 'pull_request'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.meta.outputs.version }}
+          name: v${{ steps.meta.outputs.version }}
+          files: ${{ steps.meta.outputs.zip }}
+          make_latest: true
+          generate_release_notes: true
