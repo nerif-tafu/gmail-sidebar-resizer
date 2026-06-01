@@ -1,0 +1,24 @@
+# Build artifacts
+dist/
+*.zip
+web-ext-artifacts/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Dependencies / env (if added later)
+node_modules/
+.env
+.env.*
+
+# Local scratch
+scripts/

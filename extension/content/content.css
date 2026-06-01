@@ -1,0 +1,123 @@
+div[role="navigation"].gmail-sidebar-resizable {
+  width: var(--gmail-sidebar-width, 287px) !important;
+  min-width: var(--gmail-sidebar-width, 287px) !important;
+  max-width: var(--gmail-sidebar-width, 287px) !important;
+  flex: 0 0 var(--gmail-sidebar-width, 287px) !important;
+  --gmail-sidebar-count-margin-right: 0px;
+}
+
+div[role="navigation"].gmail-sidebar-resizable.aeN {
+  max-width: var(--gmail-sidebar-width, 287px) !important;
+  min-width: var(--gmail-sidebar-width, 287px) !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .V3,
+div[role="navigation"].gmail-sidebar-resizable .aam,
+div[role="navigation"].gmail-sidebar-resizable .at9,
+div[role="navigation"].gmail-sidebar-resizable .ajl,
+div[role="navigation"].gmail-sidebar-resizable .n3,
+div[role="navigation"].gmail-sidebar-resizable .byl,
+div[role="navigation"].gmail-sidebar-resizable .aim {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Gmail pins this column at 240px; grow with the sidebar */
+div[role="navigation"].gmail-sidebar-resizable .wT {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  padding-right: 8px !important;
+  box-sizing: border-box !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .aam,
+div[role="navigation"].gmail-sidebar-resizable .V3,
+div[role="navigation"].gmail-sidebar-resizable .ajl {
+  overflow-x: hidden !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .TK {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Gmail sizes .TO to the rounded “bubble”; don’t stretch it to full sidebar width */
+div[role="navigation"].gmail-sidebar-resizable .TO {
+  position: relative !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .TN {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .nL.aig {
+  right: 6px !important;
+  left: auto !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .aio {
+  display: flex !important;
+  align-items: center !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .nU {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .nU .n0 {
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+}
+
+div[role="navigation"].gmail-sidebar-resizable .bsU {
+  flex: 0 0 auto !important;
+  margin-left: 8px !important;
+  margin-right: var(--gmail-sidebar-count-margin-right, 0px) !important;
+  padding-left: 8px !important;
+}
+
+#gmail-sidebar-resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 1000;
+  background: transparent;
+  touch-action: none;
+}
+
+#gmail-sidebar-resizer:hover,
+#gmail-sidebar-resizer.gmail-sidebar-resizer--active {
+  background: rgba(26, 115, 232, 0.25);
+}
+
+body.gmail-sidebar-resizing,
+body.gmail-sidebar-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}

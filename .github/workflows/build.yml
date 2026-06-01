@@ -1,0 +1,35 @@
+name: Build extension ZIP
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read version from manifest
+        id: meta
+        run: |
+          version=$(jq -r '.version' extension/manifest.json)
+          name=$(jq -r '.name' extension/manifest.json | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "slug=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Create ZIP (manifest at archive root)
+        run: |
+          cd extension
+          zip -r "../${{ steps.meta.outputs.slug }}-v${{ steps.meta.outputs.version }}.zip" . \
+            -x "*.DS_Store" -x "*~"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.meta.outputs.slug }}-v${{ steps.meta.outputs.version }}
+          path: ${{ steps.meta.outputs.slug }}-v${{ steps.meta.outputs.version }}.zip
+          if-no-files-found: error
